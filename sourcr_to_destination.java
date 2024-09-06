@@ -59,9 +59,11 @@ public class sourcr_to_destination {
 
         if(bfs(s,d)){
             System.out.println("Yes");
+            System.out.println("Number of nodes from source to destination: " + (level[d] + 1));
         }
         else{
             System.out.println("No");
+            System.out.println("Number of nodes from source to destination: " + (level[d] + 1));
         }
     }
 }
