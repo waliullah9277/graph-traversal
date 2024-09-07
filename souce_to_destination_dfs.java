@@ -1,29 +1,20 @@
 import java.util.*;
 
-public class sourcr_to_destination {
+public class souce_to_destination_dfs {
+
     static final int N = 100007;
     static Vector<Integer>[] v = new Vector[N];
     static boolean[] visited = new boolean[N];
-    static int[] level = new int[N];
 
-    public static boolean bfs(int s, int d){
-        Queue<Integer> q = new LinkedList<>();
-        q.add(s);
+    public static boolean dfs_call(int s, int d){
         visited[s] = true;
-        level[s] = 0;
-
-        while (!q.isEmpty()) {
-            int parent = q.poll();
-
-            if(parent == d){
-                return true;
-            }
-
-            for(int child: v[parent]){
-                if(!visited[child]){
-                    q.add(child);
-                    visited[child] = true;
-                    level[child] = level[parent] + 1;
+        if(s == d){
+            return true;
+        }
+        for(int child: v[s]){
+            if(!visited[child]){
+                if(dfs_call(child,d)){
+                    return true;
                 }
             }
         }
@@ -54,10 +45,9 @@ public class sourcr_to_destination {
         System.out.print("Enter your destination: ");
         int d = sc.nextInt();
 
-        if(bfs(s,d)){
+        if(dfs_call(s,d)){
             System.out.println("Yes");
-        }
-        else{
+        }else{
             System.out.println("No");
         }
     }
