@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class source_to_destination_dfs {
+public class nodeCount_dfs {
 
     static final int N = 100007;
     static Vector<Integer>[] v = new Vector[N];
@@ -18,9 +18,7 @@ public class source_to_destination_dfs {
         for (int child : v[s]) {
             if (!visited[child]) {
                 int result = dfs_call(child, d, count + 1);
-                if (result != -1) { 
-                    System.out.println("Yes, number of nodes in the path: " + result);
-                }
+                return result;
             }
         }
 
@@ -51,6 +49,12 @@ public class source_to_destination_dfs {
         int d = sc.nextInt();
 
         
-        dfs_call(s, d, 1);
+        int result = dfs_call(s, d, 1);
+        if(result != -1){
+            System.out.println("Yes, number of nodes in the path: " + result);
+        }
+        else{
+            System.out.println("No path founds!");
+        }
     }
 }
