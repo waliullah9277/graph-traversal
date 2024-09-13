@@ -8,22 +8,23 @@ class nodeCount_bfs {
     
     public static int bfs(int s, int d){
         Queue<Integer> q = new LinkedList<>();
+        int count = 0;
         q.add(s);
         visited[s] = true;
         level[s] = 0;
         
         while(!q.isEmpty()){
             int parent = q.poll();
+            // count++;
             // System.out.println(parent);
-            
             if (parent == d)
-                // return true;
-                return level[parent] + 1;
+                return count + 1;
             
             for(int child: v[parent]){
                 if(!visited[child]){
                     q.add(child);
                     visited[child] = true;
+                    count++;
                     level[child] = level[parent] + 1;
                 }
             }
@@ -56,6 +57,17 @@ class nodeCount_bfs {
         int d = sc.nextInt();
         
         int res = bfs(s,d);
-        System.out.println("The source " + s + " to destination " + d + " node is: "+res);
+        if(res != -1){
+
+            System.out.println(s+" to"+" "+d+" destination: "+res);
+        }
+        else{
+            System.out.println("No path founds!");
+        }
+
+        System.out.println("---------");
+        for(int i=0;i<n;i++){
+            System.out.println("Node "+ i + " : " + level[i]);
+        }
     }
 }
